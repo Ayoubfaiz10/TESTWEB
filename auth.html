@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول – مدرسة النجاح لتعليم السياقة</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Tajawal', sans-serif; background: linear-gradient(135deg, #f4f7fc 0%, #e2e8f0 100%); color: #1e293b; min-height: 100vh; display: flex; flex-direction: column; }
+        a { text-decoration: none; color: inherit; }
+
+        nav { background: #0b1d33; color: #fff; padding: 14px 0; box-shadow: 0 2px 15px rgba(0,0,0,.2); text-align: center; }
+        nav .container { max-width: 1200px; margin: auto; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; }
+        .logo { font-size: 1.5rem; font-weight: 900; color: #f5b041; }
+        .logo span { color: #fff; }
+        .back-link { color: #94a3b8; font-weight: 500; transition: color .3s; }
+        .back-link:hover { color: #f5b041; }
+
+        .auth-wrapper { flex: 1; display: flex; align-items: center; justify-content: center; padding: 40px 20px; }
+        .auth-card { background: #fff; border-radius: 20px; padding: 40px 36px; width: 100%; max-width: 420px; box-shadow: 0 10px 40px rgba(0,0,0,.08); text-align: center; }
+        .auth-card .icon { font-size: 3rem; margin-bottom: 8px; }
+        .auth-card h1 { font-size: 1.6rem; font-weight: 900; color: #0b1d33; margin-bottom: 4px; }
+        .auth-card .sub { color: #64748b; margin-bottom: 28px; font-size: .95rem; }
+        .form-group { margin-bottom: 18px; text-align: right; }
+        .form-group label { display: block; font-weight: 500; margin-bottom: 4px; color: #334155; }
+        .form-group input { width: 100%; padding: 12px 16px; border: 1px solid #cbd5e1; border-radius: 10px; font-family: inherit; font-size: 1rem; transition: border .3s; }
+        .form-group input:focus { outline: none; border-color: #f5b041; }
+        .btn { display: block; width: 100%; padding: 14px; border: none; border-radius: 50px; font-size: 1.05rem; font-weight: 700; cursor: pointer; transition: all .3s; }
+        .btn-primary { background: #f5b041; color: #0b1d33; }
+        .btn-primary:hover { background: #e09c2a; transform: translateY(-2px); }
+        .btn-outline { background: transparent; border: 2px solid #cbd5e1; color: #475569; margin-top: 10px; }
+        .btn-outline:hover { border-color: #f5b041; color: #0b1d33; }
+        .divider { display: flex; align-items: center; gap: 12px; margin: 20px 0; color: #94a3b8; font-size: .85rem; }
+        .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: #e2e8f0; }
+        .error-msg { color: #dc2626; font-size: .9rem; margin-top: 10px; display: none; }
+        .error-msg.show { display: block; }
+        .success-msg { color: #166534; font-size: .9rem; margin-top: 10px; display: none; }
+        .success-msg.show { display: block; }
+
+        footer { background: #0b1d33; color: #94a3b8; text-align: center; padding: 18px 0; font-size: .85rem; }
+        footer span { color: #f5b041; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="container">
+        <div class="logo">🚗 <span>مدرسة</span> النجاح</div>
+        <a href="index.html" class="back-link">⬅️ الرجوع للرئيسية</a>
+    </div>
+</nav>
+
+<div class="auth-wrapper">
+    <div class="auth-card">
+        <div class="icon">🔑</div>
+        <h1>تسجيل الدخول</h1>
+        <p class="sub">دخل username و password ديالك باش توصل للمنصة التعليمية</p>
+        <form id="loginForm">
+            <div class="form-group">
+                <label>اسم المستخدم (Username)</label>
+                <input type="text" id="username" placeholder="أدخل اسم المستخدم" required>
+            </div>
+            <div class="form-group">
+                <label>كلمة السر (Password)</label>
+                <input type="password" id="password" placeholder="أدخل كلمة السر" required>
+            </div>
+            <button type="submit" class="btn btn-primary">🚀 دخول</button>
+            <div class="error-msg" id="errorMsg">❌ اسم المستخدم أو كلمة السر غير صحيحين</div>
+            <div class="success-msg" id="successMsg">✅ تم تسجيل الدخول بنجاح! جاري التحويل...</div>
+        </form>
+        <div class="divider">أو</div>
+        <a href="index.html#contact" class="btn btn-outline">📝 ماعنديش حساب – تسجيل جديد</a>
+        <p style="margin-top:16px;font-size:.85rem;color:#94a3b8;">عندك مشكل فالتسجيل؟ <a href="index.html#contact" style="color:#f5b041;font-weight:700;">تواصل معنا</a></p>
+    </div>
+</div>
+
+<footer>&copy; 2026 <span>مدرسة النجاح</span> – جميع الحقوق محفوظة</footer>
+
+<script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const username = document.getElementById('username').value.trim();
+        const password = document.getElementById('password').value.trim();
+        const errorMsg = document.getElementById('errorMsg');
+        const successMsg = document.getElementById('successMsg');
+        errorMsg.classList.remove('show');
+        successMsg.classList.remove('show');
+        const accounts = [
+            { user: 'admin', pass: 'admin123', name: 'الأستاذ' },
+            { user: 'telmiz', pass: '123456', name: 'التلميذ' },
+            { user: 'demo', pass: 'demo', name: 'مستخدم تجريبي' }
+        ];
+        const match = accounts.find(a => a.user === username && a.pass === password);
+        if (match) {
+            successMsg.textContent = '✅ مرحبا ' + match.name + '! تم تسجيل الدخول بنجاح. جاري التحويل...';
+            successMsg.classList.add('show');
+            setTimeout(() => { window.location.href = 'videos.html'; }, 1500);
+        } else { errorMsg.classList.add('show'); }
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فيديوهات تعليمية – مدرسة النجاح لتعليم السياقة</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: #f4f7fc;
+            color: #1e293b;
+            line-height: 1.7;
+        }
+        a { text-decoration: none; color: inherit; }
+
+        nav {
+            background: #0b1d33;
+            color: #fff;
+            padding: 14px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 15px rgba(0,0,0,.2);
+        }
+        nav .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .logo { font-size: 1.5rem; font-weight: 900; color: #f5b041; }
+        .logo span { color: #fff; }
+        .nav-links { display: flex; gap: 20px; list-style: none; font-weight: 500; }
+        .nav-links a { transition: color .3s; }
+        .nav-links a:hover { color: #f5b041; }
+        .hamburger { display: none; font-size: 1.8rem; cursor: pointer; }
+        @media (max-width: 768px) {
+            .nav-links { display: none; width: 100%; flex-direction: column; text-align: center; padding: 16px 0 8px; gap: 14px; }
+            .nav-links.open { display: flex; }
+            .hamburger { display: block; }
+        }
+
+        section { padding: 60px 0; }
+        .container { max-width: 1200px; margin: auto; padding: 0 20px; }
+        .section-title { text-align: center; font-size: 2rem; font-weight: 900; margin-bottom: 8px; color: #0b1d33; }
+        .section-sub { text-align: center; color: #64748b; margin-bottom: 40px; font-size: 1.05rem; }
+
+        .videos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .video-card { background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,.06); transition: transform .3s, box-shadow .3s; }
+        .video-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,.1); }
+        .video-thumb { position: relative; aspect-ratio: 16 / 9; background: #1e293b; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 3rem; cursor: pointer; }
+        .video-thumb .play-btn { width: 64px; height: 64px; background: rgba(245,176,65,.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: transform .3s; }
+        .video-card:hover .play-btn { transform: scale(1.1); }
+        .video-info { padding: 20px; }
+        .video-info .tag { display: inline-block; background: #dcfce7; color: #166534; font-size: .75rem; padding: 2px 12px; border-radius: 20px; font-weight: 500; margin-bottom: 8px; }
+        .video-info h3 { font-size: 1.1rem; margin-bottom: 6px; }
+        .video-info p { color: #64748b; font-size: .9rem; }
+        .video-duration { color: #94a3b8; font-size: .8rem; margin-top: 8px; }
+
+        .categories { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 36px; }
+        .cat-btn { padding: 8px 22px; border-radius: 50px; border: 2px solid #e2e8f0; background: #fff; font-family: inherit; font-size: .9rem; font-weight: 500; cursor: pointer; transition: all .3s; }
+        .cat-btn.active, .cat-btn:hover { border-color: #f5b041; background: #f5b041; color: #0b1d33; }
+
+        .video-modal { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,.8); display: none; align-items: center; justify-content: center; z-index: 999; padding: 20px; }
+        .video-modal.open { display: flex; }
+        .video-modal-content { background: #000; border-radius: 16px; overflow: hidden; width: 100%; max-width: 800px; position: relative; }
+        .video-modal-content video, .video-modal-content iframe { width: 100%; aspect-ratio: 16 / 9; display: block; }
+        .video-modal-close { position: absolute; top: -40px; left: 0; color: #fff; font-size: 1.8rem; cursor: pointer; background: none; border: none; }
+        .video-modal-info { padding: 16px 20px; background: #0b1d33; color: #fff; }
+        .video-modal-info h3 { color: #f5b041; }
+
+        footer { background: #0b1d33; color: #94a3b8; text-align: center; padding: 24px 0; font-size: .9rem; }
+        footer span { color: #f5b041; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="container">
+        <div class="logo">🚗 <span>مدرسة</span> النجاح</div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html#features">المميزات</a></li>
+            <li><a href="index.html#services">الخدمات</a></li>
+            <li><a href="index.html#elearning">التعلم</a></li>
+            <li><a href="quiz.html">📝 الامتحان</a></li>
+            <li><a href="index.html#testimonials">الآراء</a></li>
+            <li><a href="index.html#contact">اتصل بنا</a></li>
+            <li><a href="auth.html" style="color:#f5b041;font-weight:700;">🔑 تسجيل الدخول</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger">☰</div>
+    </div>
+</nav>
+
+<section>
+    <div class="container">
+        <h1 class="section-title">🎬 الفيديوهات التعليمية</h1>
+        <p class="section-sub">شاهد جميع دروس علامات السير (البلايك) والأسبقية والسياقة بالشرح المفصل</p>
+        <div class="categories">
+            <button class="cat-btn active" data-cat="all">الكل</button>
+            <button class="cat-btn" data-cat="signs">علامات المرور (البلايك)</button>
+            <button class="cat-btn" data-cat="priority">الأسبقية والتقاطعات</button>
+            <button class="cat-btn" data-cat="driving">قواعد السياقة</button>
+        </div>
+        <div class="videos-grid" id="videosGrid"></div>
+    </div>
+</section>
+
+<div class="video-modal" id="videoModal">
+    <div class="video-modal-content">
+        <button class="video-modal-close" id="closeModal">✕</button>
+        <div id="videoPlayer"></div>
+        <div class="video-modal-info">
+            <h3 id="modalTitle">عنوان الفيديو</h3>
+            <p id="modalDesc" style="color:#94a3b8;font-size:.9rem;margin-top:4px;"></p>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="container">&copy; 2026 <span>مدرسة النجاح</span> – جميع الحقوق محفوظة</div>
+</footer>
+
+<script>
+    document.getElementById('hamburger').addEventListener('click', () => {
+        document.getElementById('navLinks').classList.toggle('open');
+    });
+    document.querySelectorAll('.nav-links a').forEach(l => {
+        l.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+    });
+
+    const videos = [
+        { id: 'v1', cat: 'signs', title: 'علامات الخطر (التحذيرية)', desc: 'شرح جميع علامات الخطر اللي كاتعلق ف الطريق', dur: '12:30', src: 'https://www.youtube.com/embed/jgQ3JUBXn8w' },
+        { id: 'v2', cat: 'signs', title: 'علامات المنع', desc: 'شرح علامات المنع والزجر كاملة مع الأمثلة', dur: '10:15', src: 'https://www.youtube.com/embed/jgQ3JUBXn8w' },
+        { id: 'v3', cat: 'signs', title: 'علامات الإجبار', desc: 'العلامات اللي كاتوجب عليك دير شي حاجة معينة', dur: '8:45', src: 'https://www.youtube.com/embed/jgQ3JUBXn8w' },
+        { id: 'v4', cat: 'signs', title: 'علامات الإرشاد والاتجاه', desc: 'العلامات اللي كاتساعدك فالملاحة والاتجاهات', dur: '9:20', src: 'https://www.youtube.com/embed/jgQ3JUBXn8w' },
+        { id: 'v5', cat: 'priority', title: 'ملتقيات الطرق ذات الأولوية', desc: 'فهم ملتقيات الطرق ومن اللي عندو الأسبقية', dur: '14:00', src: 'https://www.youtube.com/embed/jgQ3JUBXn8w' },
+        { id: 'v6', cat: 'priority', title: 'الأسبقية لليمين', desc: 'شرح قاعدة الأسبقية لليمين في التقاطعات', dur: '11:30', src: 'https://www.youtube.com/embed/jgQ3JUBXn8w' },
+        { id: 'v7', cat: 'priority', title: 'التقاطعات ذات الإشارات الضوئية', desc: 'كيفاش تتعامل مع الضوئة (الرومبان) فالتقاطعات', dur: '10:00', src: 'https://www.youtube.com/embed/jgQ3JUBXn8w' },
+        { id: 'v8', cat: 'driving', title: 'الوقوف والتوقف', desc: 'الفرق بين الوقوف والتوقف والأماكن الممنوعة', dur: '13:20', src: 'https://www.youtube.com/embed/jgQ3JUBXn8w' },
+        { id: 'v9', cat: 'driving', title: 'تجاوز السيارات', desc: 'قواعد التجاوز الآمن والأماكن الممنوع فيها التجاوز', dur: '11:45', src: 'https://www.youtube.com/embed/jgQ3JUBXn8w' },
+        { id: 'v10', cat: 'driving', title: 'السرعة المسموحة', desc: 'السرعات القصوى المسموحة داخل وخارج المدار الحضري', dur: '9:50', src: 'https://www.youtube.com/embed/jgQ3JUBXn8w' },
+        { id: 'v11', cat: 'driving', title: 'نصائح قبل الامتحان', desc: 'نصائح مهمة باش تنجح ف الامتحان التطبيقي من المرة الأولى', dur: '15:00', src: 'https://www.youtube.com/embed/jgQ3JUBXn8w' },
+    ];
+
+    function renderVideos(cat = 'all') {
+        const grid = document.getElementById('videosGrid');
+        const filtered = cat === 'all' ? videos : videos.filter(v => v.cat === cat);
+        grid.innerHTML = filtered.map(v => `
+            <div class="video-card" data-id="${v.id}">
+                <div class="video-thumb" onclick="openVideo('${v.id}')">
+                    <div class="play-btn">▶️</div>
+                </div>
+                <div class="video-info">
+                    <span class="tag">${v.cat === 'signs' ? 'بلايك' : v.cat === 'priority' ? 'أسبقية' : 'سياقة'}</span>
+                    <h3>${v.title}</h3>
+                    <p>${v.desc}</p>
+                    <div class="video-duration">⏱️ ${v.dur}</div>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function openVideo(id) {
+        const video = videos.find(v => v.id === id);
+        if (!video) return;
+        document.getElementById('modalTitle').textContent = video.title;
+        document.getElementById('modalDesc').textContent = video.desc;
+        document.getElementById('videoPlayer').innerHTML = `<iframe src="${video.src}" frameborder="0" allowfullscreen></iframe>`;
+        document.getElementById('videoModal').classList.add('open');
+    }
+
+    document.getElementById('closeModal').addEventListener('click', () => {
+        document.getElementById('videoModal').classList.remove('open');
+        document.getElementById('videoPlayer').innerHTML = '';
+    });
+    document.getElementById('videoModal').addEventListener('click', (e) => {
+        if (e.target === e.currentTarget) {
+            document.getElementById('videoModal').classList.remove('open');
+            document.getElementById('videoPlayer').innerHTML = '';
+        }
+    });
+
+    document.querySelectorAll('.cat-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderVideos(btn.dataset.cat);
+        });
+    });
+
+    renderVideos();
+</script>
+
+</body>
+</html>
